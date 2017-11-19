@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="description" content="Retail Bicycle Site, with Web Scraped Inventory">
+  <meta name="author" content="Fred Lintz">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Web Scraper - Shop Road</title>
+
+  <!-- Compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="../css/index.css">
+
+</head>
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo"><img src="../images/alpacaicon.png" alt="Alpaca Logo" height="50"></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/mountain">Mountain Bikes</a></li>
+        <li><a href="/road">Road Bikes</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/mountain">Mountain Bikes</a></li>
+        <li><a href="/road">Road Bikes</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div id="index-banner" class="parallax-container">    
+    <div class="parallax"><img src="../images/roadbackground.jpg" alt="Unsplashed background img 1"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <div class="brown-text center">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- this div filled by cheerio scraper and mongodb -->
+  <div class="row" id="roadInventory"></div>
+
+
+
+  <footer class="page-footer teal">
+    <div class="footer-copyright">
+      <div class="container">
+        Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a> and Fred Lintz
+      </div>
+    </div>
+  </footer>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="../javascript/road.js"></script>
+
+  </body>
+</html>
