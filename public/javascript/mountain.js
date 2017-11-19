@@ -1,8 +1,8 @@
 
 function createCards(data) {
 	data.forEach((item) => {
-		console.log(item);
-		if (item.rating.length !== undefined) {
+		console.log(item.rating.length);
+		if (item.rating.length === "") {
 			let users = item.rating.length;
 			let avgRating = calculateRating(item.rating);
 		} else {
