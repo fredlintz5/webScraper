@@ -2,7 +2,7 @@
 function createCards(data) {
 	data.forEach((item) => {
 		console.log(item.rating.length);
-		if (item.rating.length === "") {
+		if (item.rating.length !== 0) {
 			let users = item.rating.length;
 			let avgRating = calculateRating(item.rating);
 		} else {
