@@ -9,6 +9,7 @@ function createCards(data) {
 			let users = '0';
 			let avgRating = 'Null';
 		}
+		console.log(avgRating);
 		
 		let bikeCard = 
 			`<div class="col s12 m4 l3">
