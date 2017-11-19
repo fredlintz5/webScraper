@@ -4,9 +4,11 @@ function createCards(data) {
 		if (item.rating.length !== undefined) {
 			let users = item.rating.length;
 			let avgRating = calculateRating(item.rating);
+		} else {
+			let users = '0';
+			let avgRating = 'Null';
 		}
-		// let users = item.rating.length;
-		// let avgRating = calculateRating(item.rating);
+		
 		let bikeCard = 
 			`<div class="col s12 m4 l3">
 			  <div class="card">
@@ -25,8 +27,8 @@ function createCards(data) {
 			      <br>
 			      <br>
 			      <div class="center">
-				      <h5>Rated: ${avgRating || 'No Ratings Yet'} stars</h5>
-				      <p> by ${users || '0'} customer(s)</p>
+				      <h5>Rated: ${avgRating} stars</h5>
+				      <p> by ${users} customer(s)</p>
 			      </div>
 			      <div class="center stars">
 						<span><i class="material-icons rating1" data-star="r_star1">star_border</i></span>
