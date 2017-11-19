@@ -17,15 +17,33 @@ p {
   color: #26a69a;
 }
 
-.parallax-container {
+#index-banner {
   min-height: 380px;
   line-height: 0;
   height: 73vh;
   color: rgba(255,255,255,.9);
 }
 
+#mountain-banner {
+  min-height: 380px;
+  line-height: 0;
+  height: 55vh;
+  color: rgba(255,255,255,.9);
+}
+
+#road-banner {
+  min-height: 380px;
+  line-height: 0;
+  height: 55vh;
+  color: rgba(255,255,255,.9);
+}
+
 .parallax-container .section {
   width: 100%;
+}
+
+#header {
+  text-shadow: 0.5px -0.6px #333;
 }
 
 @media only screen and (max-width : 992px) {

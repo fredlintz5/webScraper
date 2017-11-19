@@ -7,6 +7,21 @@ const express    = require('express');
 const app        = express();
 const path       = require("path");
 const PORT       = process.env.PORT || 8080;
+const db         = mongoose.connection;
+
+//        DATABASE configuration for MONGOOSE 
+const databaseUri = 'mongodb://localhost/webScraper';
+
+if (process.env.MONGODB_URI) {
+	mongoose.connect(process.env.MONGODB_URI)
+} else {
+	mongoose.connect(databaseUri);
+}
+
+
+
+db.on('error', (err) => console.log('Mongoose Error: ', err));
+db.once('open', () => console.log('Mongoose connection successful'));
 
 
 app.use(logger('dev'));
@@ -14,11 +29,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static("public"));
 
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/webScraper', {
-	useMongooseClient: true
-});
+// mongoose.connect('mongodb://localhost/webScraper', {
+// 	useMongooseClient: true
+// });
 
-  
 
 // static routes
 app.get('/', (req,res) => {
