@@ -1,15 +1,17 @@
 
 function createCards(data) {
 	data.forEach((item) => {
+		let avgRating = 'Null';
+		let users = '0';
+
 		console.log(item.rating.length);
 		if (item.rating.length !== 0) {
-			let users = item.rating.length;
-			let avgRating = calculateRating(item.rating);
+			users = item.rating.length;
+			avgRating = calculateRating(item.rating);
 		} else {
-			let users = '0';
-			let avgRating = 'Null';
+			users = '0';
+			avgRating = 'Null';
 		}
-		console.log(avgRating);
 		
 		let bikeCard = 
 			`<div class="col s12 m4 l3">
