@@ -28,10 +28,9 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static("public"));
 
+
 mongoose.Promise = Promise;
-// mongoose.connect('mongodb://localhost/webScraper', {
-// 	useMongooseClient: true
-// });
+
 
 
 // static routes

@@ -1,8 +1,12 @@
 
 function createCards(data) {
 	data.forEach((item) => {
-		let users = item.rating.length;
-		let avgRating = calculateRating(item.rating);
+		if (item.rating.length !== undefined) {
+			let users = item.rating.length;
+			let avgRating = calculateRating(item.rating);
+		}
+		// let users = item.rating.length;
+		// let avgRating = calculateRating(item.rating);
 		let bikeCard = 
 			`<div class="col s12 m4 l3">
 			  <div class="card">
