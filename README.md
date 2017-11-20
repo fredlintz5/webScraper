@@ -2,9 +2,16 @@
 > Retail Website using Cheerio JS and Request JS to scrape bicycle inventory from Trekbikes.com
 
 
+### Home 
 ![](public/images/screenShotindex.png)
+
+### Mountain Bike Inventory 
 ![](public/images/screenShotmountain.png)
+
+### Road Bike Inventory 
 ![](public/images/screenShotroad.png)
+
+### Bike Star Rating 
 ![](public/images/screenShotRating.png)
 
 
