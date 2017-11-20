@@ -1,12 +1,12 @@
 const Bikes      = require('../models/Bikes.js');
 const scrapes    = require('../scrapes.js');
-var ObjectId     = require('mongodb').ObjectID;
+const ObjectId   = require('mongodb').ObjectID;
 
 
 module.exports = (app) => {
 	
+	// either display saved data from DB, or scrape and retrieve new data
 	app.get('/api/mountain', (req,res) => {
-
 		Bikes.find({category: 'mountain'})
 			.then((data) => {
 				if (data.length !== 0) {
@@ -30,9 +30,8 @@ module.exports = (app) => {
 			})
 	})
 
-
+	// either display saved data from DB, or scrape and retrieve new data
 	app.get('/api/road', (req,res) => {
-
 		Bikes.find({category: 'road'})
 			.then((data) => {
 				if (data.length !== 0) {
@@ -56,21 +55,8 @@ module.exports = (app) => {
 			})
 	})
 
-	app.put('/api/mountain/:rating/:id', (req,res) => {
-		
-		Bikes.update(
-		   { _id: ObjectId(req.params.id) },
-		   { $push: {rating: req.params.rating }})
-		.then((data) => {
-			res.send(data);
-		})
-		.catch((err) => {
-			console.log(err);
-		})
-	})
-
-	app.put('/api/road/:rating/:id', (req,res) => {
-
+	// push new rating into bicycle star rating array
+	app.put('/api/:category/:rating/:id', (req,res) => {
 		Bikes.update(
 		   { _id: ObjectId(req.params.id) },
 		   { $push: {rating: req.params.rating }})

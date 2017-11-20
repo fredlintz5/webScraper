@@ -27,7 +27,7 @@ function createCards(data, category) {
 			  <div class="card">
 			    <div class="card-image">
 			      <img class="activator" id="${category + index}" src="${item.image}">			      
-			      <a href="https://www.trekbikes.com${item.link}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">shopping_cart</i></a>
+			      <a href="https://www.trekbikes.com${item.link}" target="_blank" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">shopping_cart</i></a>
 			    </div>
 			    <div class="card-content white-text teal lighten-2">
 			      <p>${item.text}</p>
