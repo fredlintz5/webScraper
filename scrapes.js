@@ -2,7 +2,6 @@ const cheerio = require('cheerio');
 const request = require('request');
 
 
-
 let scrapers = {
 	getMountainBikes: function(cb) {
 		request("https://www.trekbikes.com/us/en_US/bikes/mountain-bikes/c/B300/", (err, response, html) => {
