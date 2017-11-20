@@ -6,7 +6,7 @@ $(".button-collapse").sideNav();
 // these functions will be used on all bicycle category pages
 function createCards(data, category) {
 
-	// $(`#${category}Inventory`).empty();
+	$(`#${category}Inventory`).empty();
 
 	data.forEach((item, index) => {
 		let avgRating = 'Null';
