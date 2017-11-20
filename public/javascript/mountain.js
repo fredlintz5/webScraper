@@ -1,5 +1,6 @@
-// globally set rating variable
+// globally variables
 let rating = 0;
+let card;
 
 
 // on page load call materialize functions && get dynamic inventory
@@ -64,7 +65,14 @@ $('#mountainInventory').on('click', '.material-icons', function() {
 	}
 })
 
-// submit rating based off of Star Clicks
+// setting the card value here allows me to dynamically re-open the card 
+// so the user can see the newly updated rating after submitting
+$('#mountainInventory').on('click', '.activator', function() {
+	card = $(this).attr('id');
+})
+
+
+// submit rating for bicycle
 $('#mountainInventory').on('click', '#mountainSubmitRating', function() {
 
 	let _id = $(this).attr('data-id');
@@ -73,11 +81,18 @@ $('#mountainInventory').on('click', '#mountainSubmitRating', function() {
 		url: `/api/mountain/${rating}/${_id}`,
 		type: 'PUT'
 	})
-	.done(function(data) {
-		window.location = '/mountain';		
-	})
-})
+	.done(function() {
+		
+		Materialize.toast('Rating Submitted!', 3500);
 
+		// reload the page with newly submitted ratings, and open card
+		// so user can see newly calculated rating
+		$.get('/api/mountain', function(data) {
+			createCards(data, 'mountain');
+			$(`#${card}`).click();
+		});	
+	})	
+})
 
 
 

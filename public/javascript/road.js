@@ -1,6 +1,6 @@
-// globally set the rating variable
+// globally variables
 let rating = 0;
-
+let card;
 
 // on page load call materialize functions && get dynamic inventory
 $('.parallax').parallax();
@@ -64,6 +64,14 @@ $('#roadInventory').on('click', '.material-icons', function() {
 	}
 })
 
+
+// setting the card value here allows me to dynamically re-open the card 
+// so the user can see the newly updated rating after submitting
+$('#roadInventory').on('click', '.activator', function() {
+	card = $(this).attr('id');
+})
+
+
 // submit rating for bicycle
 $('#roadInventory').on('click', '#roadSubmitRating', function() {
 
@@ -73,11 +81,18 @@ $('#roadInventory').on('click', '#roadSubmitRating', function() {
 		url: `/api/road/${rating}/${_id}`,
 		type: 'PUT'
 	})
-	.done(function(data) {
-		window.location = '/road';		
-	})
-})
+	.done(function() {
 
+		Materialize.toast('Rating Submitted!', 3500);
+
+		// reload the page with newly submitted ratings, and open card
+		// so user can see newly calculated rating
+		$.get('/api/road', function(data) {
+			createCards(data, 'road');
+			$(`#${card}`).click();
+		});	
+	})	
+})
 
 
 

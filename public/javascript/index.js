@@ -5,7 +5,10 @@ $(".button-collapse").sideNav();
 
 // these functions will be used on all bicycle category pages
 function createCards(data, category) {
-	data.forEach((item) => {
+
+	// $(`#${category}Inventory`).empty();
+
+	data.forEach((item, index) => {
 		let avgRating = 'Null';
 		let users = '0';
 
@@ -18,10 +21,10 @@ function createCards(data, category) {
 		}
 
 		let bikeCard = 
-			`<div class="col s12 m4 l3">
+			`<div class="col s12 m6 l4">
 			  <div class="card">
 			    <div class="card-image">
-			      <img class="activator" src="${item.image}">			      
+			      <img class="activator" id="${category + index}" src="${item.image}">			      
 			      <a href="https://www.trekbikes.com${item.link}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">shopping_cart</i></a>
 			    </div>
 			    <div class="card-content white-text teal lighten-2">
