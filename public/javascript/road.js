@@ -1,77 +1,18 @@
-
-function createCards(data) {
-	data.forEach((item) => {
-		let avgRating = 'Null';
-		let users = '0';
-
-		console.log(item.rating.length);
-		if (item.rating.length !== 0) {
-			users = item.rating.length;
-			avgRating = calculateRating(item.rating);
-		} else {
-			users = '0';
-			avgRating = 'Null';
-		}
-
-		let bikeCard = 
-			`<div class="col s12 m4 l3">
-			  <div class="card">
-			    <div class="card-image">
-			      <img class="activator" src="${item.image}">			      
-			      <a href="https://www.trekbikes.com${item.link}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">shopping_cart</i></a>
-			    </div>
-			    <div class="card-content white-text teal lighten-2">
-			      <p>${item.text}</p>
-			      <p>${item.price}</p>
-			    </div>
-			    <div class="card-reveal">
-			      <span class="card-title grey-text text-darken-4">
-			      	<i class="material-icons right">close</i>
-			      </span>
-			      <br>
-			      <br>
-			      <div class="center">
-				      <h5>Rated: ${avgRating} stars</h5>
-				      <p> by ${users} customer(s)</p>
-			      </div>
-			      <div class="center stars">
-						<span><i class="material-icons rating1" data-star="r_star1">star_border</i></span>
-						<span><i class="material-icons rating2" data-star="r_star2">star_border</i></span>
-						<span><i class="material-icons rating3" data-star="r_star3">star_border</i></span>
-						<span><i class="material-icons rating4" data-star="r_star4">star_border</i></span>
-						<span><i class="material-icons rating5" data-star="r_star5">star_border</i></span>
-			      </div>
-			      <br>
-			      <div class="center">
-			      	<button class="btn center waves-effect waves-light teal lighten-1" id="submitRating">Submit Rating</button>
-			     </div>
-			    </div>
-			  </div>
-			</div> `
-	$('#roadInventory').append(bikeCard);
-	})
-}
-
-function calculateRating(array) {
-	let total = 0;
-	array.forEach((number) => {
-		total += number;
-	})
-	let average = Math.floor(total/array.length);
-	return average;
-}
+// globally set the rating variable
+let rating = 0;
 
 
 // on page load call materialize functions && get dynamic inventory
 $('.parallax').parallax();
 $(".button-collapse").sideNav();
 
+
 $.get('/api/road', function(data) {
-	createCards(data);
+	createCards(data, "road");
 });
 
 
-// change rating value based off of clicks
+// change rating value based off of Star clicks
 $('#roadInventory').on('click', '.material-icons', function() {
 	let star = $(this).data('star');
 	
@@ -82,6 +23,7 @@ $('#roadInventory').on('click', '.material-icons', function() {
 			$('.rating3').html('star_border');
 			$('.rating4').html('star_border');
 			$('.rating5').html('star_border');
+			rating = 1;
 			break;
 
 		case 'r_star2':
@@ -90,6 +32,7 @@ $('#roadInventory').on('click', '.material-icons', function() {
 			$('.rating3').html('star_border');
 			$('.rating4').html('star_border');
 			$('.rating5').html('star_border');
+			rating = 2;
 			break;
 
 		case 'r_star3':
@@ -98,6 +41,7 @@ $('#roadInventory').on('click', '.material-icons', function() {
 			$('.rating3').html('star');
 			$('.rating4').html('star_border');
 			$('.rating5').html('star_border');
+			rating = 3;
 			break;
 
 		case 'r_star4':
@@ -106,6 +50,7 @@ $('#roadInventory').on('click', '.material-icons', function() {
 			$('.rating3').html('star');
 			$('.rating4').html('star');
 			$('.rating5').html('star_border');
+			rating = 4;
 			break;
 
 		case 'r_star5':
@@ -114,9 +59,25 @@ $('#roadInventory').on('click', '.material-icons', function() {
 			$('.rating3').html('star');
 			$('.rating4').html('star');
 			$('.rating5').html('star');
+			rating = 5;
 			break;
 	}
 })
+
+// submit rating for bicycle
+$('#roadInventory').on('click', '#roadSubmitRating', function() {
+
+	let _id = $(this).attr('data-id');
+
+	$.ajax({
+		url: `/api/road/${rating}/${_id}`,
+		type: 'PUT'
+	})
+	.done(function(data) {
+		window.location = '/road';		
+	})
+})
+
 
 
 

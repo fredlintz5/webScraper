@@ -8,6 +8,7 @@ const app        = express();
 const path       = require("path");
 const PORT       = process.env.PORT || 8080;
 const db         = mongoose.connection;
+var ObjectId     = require('mongodb').ObjectID;
 
 //        DATABASE configuration for MONGOOSE 
 const databaseUri = 'mongodb://localhost/webScraper';
@@ -24,13 +25,14 @@ db.on('error', (err) => console.log('Mongoose Error: ', err));
 db.once('open', () => console.log('Mongoose connection successful'));
 
 
+
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static("public"));
 
 
 mongoose.Promise = Promise;
-
+mongoose.set('debug', true);
 
 
 // static routes
@@ -97,6 +99,32 @@ app.get('/api/road', (req,res) => {
 		.catch((err) => {
 			console.log(err);
 		})
+})
+
+app.put('/api/mountain/:rating/:id', (req,res) => {
+	
+	Bikes.update(
+	   { _id: ObjectId(req.params.id) },
+	   { $push: {rating: req.params.rating }})
+	.then((data) => {
+		res.send(data);
+	})
+	.catch((err) => {
+		console.log(err);
+	})
+})
+
+app.put('/api/road/:rating/:id', (req,res) => {
+	console.log('road ajax');
+	Bikes.update(
+	   { _id: ObjectId(req.params.id) },
+	   { $push: {rating: req.params.rating }})
+	.then((data) => {
+		res.send(data);
+	})
+	.catch((err) => {
+		console.log(err);
+	})
 })
 
 
