@@ -1,11 +1,13 @@
 // on page load call materialize functions
 $('.parallax').parallax();
 $(".button-collapse").sideNav();
+$('select').material_select();
 
 
 // these functions will be used on all bicycle category pages
 function createCards(data, category) {
 
+	$('.dataResults').html(`<strong>${data.length} Results<strong>`);
 	$(`#${category}Inventory`).empty();
 
 	data.forEach((item, index) => {
@@ -69,5 +71,25 @@ function calculateRating(array) {
 	let average = total/array.length;
 	return average.toFixed(1);
 }
+
+
+
+
+
+
+function inventorySort(argument, category) {
+
+	$.ajax({
+		url: `/api/${category}/${argument}`,
+		type: 'GET',
+	})
+	.done(function(data) {
+		createCards(data, category);
+	})
+}
+
+
+
+
 
 
