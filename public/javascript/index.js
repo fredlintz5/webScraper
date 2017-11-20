@@ -73,10 +73,6 @@ function calculateRating(array) {
 }
 
 
-
-
-
-
 function inventorySort(argument, category) {
 
 	$.ajax({
